@@ -1,12 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { configureStore } from 'redux-starter-kit';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { combinedReducer } from './reducers';
+import App from './components/App.jsx';
+import { loadState, saveState } from './localStorage';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+let localData = loadState();
+
+if (localData === undefined) {
+  localData = {
+    columns: {},
+    tasks: {},
+    columnOrder: [],
+  };
+}
+
+const store = configureStore({
+  reducer: combinedReducer,
+  preloadedState: localData,
+});
+
+store.subscribe(() => {
+  saveState({ ...store.getState(), addedColumn: null });
+});
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
