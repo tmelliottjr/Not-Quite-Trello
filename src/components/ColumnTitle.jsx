@@ -6,7 +6,7 @@ import { editColumn, deleteColumn } from '../actions';
 const Title = styled.h3`
   color: white;
   font-size: 32px;
-  padding: 10px;
+  padding: 0 10px;
   margin: 0;
   text-align: center;
   max-height: 200px;
@@ -67,8 +67,14 @@ class ColumnTitle extends Component {
 
   handleMouseDown(e) {
     if (!this.state.editTitle) return;
+
     if (e.target !== this.titleRef.current) {
-      this.saveTitleChange();
+      const { id } = this.props.column;
+      // If this is a newly added column delete the column if no title provided.
+      // TODO update store so that new columns don't persist if browser is closed on new column
+      return id === this.props.addedColumn && !this.state.title
+        ? this.props.deleteColumn(id)
+        : this.saveTitleChange();
     }
   }
 
@@ -78,15 +84,6 @@ class ColumnTitle extends Component {
   }
 
   saveTitleChange() {
-    // Don't save changes if title is left blank
-    // For new columns, delete the column entirely if no title is entered and re-enable the new column button
-
-    if (this.props.column.id === this.props.addedColumn) {
-      if (!this.state.title) {
-        this.props.deleteColumn(this.props.column.id);
-      }
-    }
-
     if (this.state.title) {
       this.props.editColumn(this.props.column.id, this.state.title);
     }

@@ -7,6 +7,7 @@ import NewTask from './NewTask';
 import TaskItem from './TaskItem';
 import ColumnTitle from './ColumnTitle';
 import { saveTask, deleteTask, createTask, deleteColumn } from '../actions';
+import { DeleteButton } from './DeleteButton';
 
 const Container = styled.div`
   flex-direction: column;
@@ -14,6 +15,14 @@ const Container = styled.div`
   margin: 10px;
   border-radius: 2px;
   background-color: #353d42ad;
+  position: relative;
+`;
+
+const ColumnHeader = styled.div`
+  display: flex;
+  align-content: center;
+  height: 20px;
+  background-color: #00000066;
 `;
 
 const TaskList = styled.div`
@@ -27,6 +36,10 @@ const TaskList = styled.div`
 `;
 
 class Column extends Component {
+  constructor(props) {
+    super(props);
+    this.handleColumnDelete = this.handleColumnDelete.bind(this);
+  }
   componentDidMount() {
     //TODO: Talk to someone about how this is handled. Is there a better way to access the DOM node from a parent?
     // What about checking that the component is new for the first time.
@@ -39,6 +52,10 @@ class Column extends Component {
     }
   }
 
+  handleColumnDelete(e) {
+    this.props.deleteColumn(this.props.column.id);
+  }
+
   render() {
     return (
       <Draggable draggableId={this.props.column.id} index={this.props.index}>
@@ -48,9 +65,9 @@ class Column extends Component {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <button
-              onClick={() => this.props.deleteColumn(this.props.column.id)}
-            />
+            <ColumnHeader>
+              <DeleteButton onClick={this.handleColumnDelete} />
+            </ColumnHeader>
             <ColumnTitle
               column={this.props.column}
               newColumnButtonRef={this.props.newColumnButtonRef}
