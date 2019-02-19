@@ -7,10 +7,27 @@ const Button = styled.button`
   background: none;
   outline: none;
   cursor: pointer;
+  font-size: 14px;
 
   rect,
   path {
-    fill: #ff8d8d;
+    fill: #b9b9b1;
+    transition: fill 0.25s ease;
+  }
+
+  :hover {
+    opacity: 1;
+    rect,
+    path {
+      fill: #ff8d8d;
+    }
+  }
+
+  :active {
+    rect,
+    path {
+      fill: #ff5050;
+    }
   }
 `;
 

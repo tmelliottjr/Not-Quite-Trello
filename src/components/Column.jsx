@@ -21,7 +21,7 @@ const Container = styled.div`
 const ColumnHeader = styled.div`
   display: flex;
   align-content: center;
-  height: 20px;
+  height: 25px;
   background-color: #00000066;
 `;
 
