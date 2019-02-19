@@ -46,7 +46,11 @@ class ColumnTitle extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.saveTitleChange = this.saveTitleChange.bind(this);
     this.titleRef = React.createRef();
-    this.state = { editTitle: false, title: this.props.column.title };
+  }
+
+  state = {
+    editTitle: false,
+    title: this.props.column.title
   }
 
   componentWillMount() {

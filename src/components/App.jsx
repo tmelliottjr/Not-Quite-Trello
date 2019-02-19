@@ -141,6 +141,7 @@ class App extends React.Component {
     }
     this.props.addColumn();
   }
+
   onDragEnd = result => {
     const { destination, source } = result;
 
