@@ -43,11 +43,13 @@ footer {
   background-color: #000000c2;
   position: fixed;
   bottom: 0;
+
   & a{
     color: inherit;
     text-decoration: none;
     transition: color .25s ease;
   }
+
    & a:hover{
      color: #0ef5c7;
    }
@@ -93,7 +95,7 @@ const NewColumnButton = styled.button`
   -webkit-appearance: none;
   appearance: none;
   height: 30px;
-  flex: 0 0 155px;
+  flex: 0 0 160px;
   margin: 10px;
   font-size: 14px;
   border-radius: 2px;

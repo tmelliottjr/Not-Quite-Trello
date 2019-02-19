@@ -1,19 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 // TODO: Breakout base button style
 const Button = styled.button`
   -webkit-appearance: none;
+  padding: 0;
   appearance: none;
   height: 50px;
-
-width: 50px;
+  width: 50px;
   font-size: 36px;
   border: 2px solid #1fd8b3;
   background: none;
   outline: none;
-  border-radius: 50px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
