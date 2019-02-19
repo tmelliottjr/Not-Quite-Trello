@@ -7,7 +7,8 @@ const Button = styled.button`
   -webkit-appearance: none;
   appearance: none;
   height: 50px;
-  width: 50px;
+
+width: 50px;
   font-size: 36px;
   border: 2px solid #1fd8b3;
   background: none;

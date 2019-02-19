@@ -177,10 +177,10 @@ const deleteAssociatedTasks = (prevTasks, action, prevColumns) => {
 };
 
 const removeColumnFromColumnOrder = (prevColumnOrder, action) => {
-  const { id } = action;
+  const { columnId } = action;
 
   let newColumnOrder = [...prevColumnOrder];
-  let columnIndex = newColumnOrder.indexOf(id);
+  let columnIndex = newColumnOrder.indexOf(columnId);
   newColumnOrder.splice(columnIndex, 1);
 
   return newColumnOrder;

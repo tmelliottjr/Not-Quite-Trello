@@ -11,7 +11,7 @@ import { DeleteButton } from './DeleteButton';
 
 const Container = styled.div`
   flex-direction: column;
-  width: 256px;
+  flex: 0 0 255px;
   margin: 10px;
   border-radius: 2px;
   background-color: #353d42ad;

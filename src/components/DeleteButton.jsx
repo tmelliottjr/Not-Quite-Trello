@@ -17,7 +17,7 @@ const Button = styled.button`
 export const DeleteButton = props => {
   return (
     <Button {...props}>
-      <i class="far fa-trash-alt" />
+      <i className="far fa-trash-alt" />
     </Button>
   );
 };

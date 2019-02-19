@@ -15,13 +15,6 @@ html {
   padding: 0;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 body {
   height: 100%;
   background: url(${bg});
@@ -30,6 +23,34 @@ body {
   background-attachment: fixed;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
+  background-color: #000000c2;
+  position: fixed;
+  bottom: 0;
+  & a{
+    color: inherit;
+    text-decoration: none;
+    transition: color .25s ease;
+  }
+   & a:hover{
+     color: #0ef5c7;
+   }
 }
 
 textarea{
@@ -62,16 +83,17 @@ textarea{
 `;
 
 const Container = styled.div`
-  height: 100%;
+  height: calc(100% - 50px);
   display: flex;
   align-items: flex-start;
+  overflow-y: scroll;
 `;
 
 const NewColumnButton = styled.button`
   -webkit-appearance: none;
   appearance: none;
   height: 30px;
-  width: 155px;
+  flex: 0 0 155px;
   margin: 10px;
   font-size: 14px;
   border-radius: 2px;
@@ -142,66 +164,72 @@ class App extends React.Component {
       <>
         <GlobalStyle />
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <div
+          {/* <div
             style={{ height: '100%', display: 'flex' }}
             ref={this.containerRef}
+          > */}
+          <Droppable
+            droppableId="all-columns"
+            direction="horizontal"
+            type="column"
           >
-            <Droppable
-              droppableId="all-columns"
-              direction="horizontal"
-              type="column"
-            >
-              {provided => (
-                <Container ref={provided.innerRef} {...provided.droppableProps}>
-                  {this.props.columnOrder.map((columnId, index) => {
-                    const column = this.props.columns[columnId];
-                    const tasks = column.taskIds.map(
-                      taskId => this.props.tasks[taskId],
-                    );
+            {provided => (
+              <Container ref={provided.innerRef} {...provided.droppableProps}>
+                {this.props.columnOrder.map((columnId, index) => {
+                  const column = this.props.columns[columnId];
+                  const tasks = column.taskIds.map(
+                    taskId => this.props.tasks[taskId],
+                  );
 
-                    return (
-                      <Column
-                        key={column.id}
-                        column={column}
-                        taskList={tasks}
-                        index={index}
-                        newColumnButtonRef={this.newColumnButtonRef}
+                  return (
+                    <Column
+                      key={column.id}
+                      column={column}
+                      taskList={tasks}
+                      index={index}
+                      newColumnButtonRef={this.newColumnButtonRef}
+                    />
+                  );
+                })}
+                <NewColumnButton
+                  ref={el => (this.newColumnButtonRef = el)}
+                  onClick={this.handleAddColumn}
+                >
+                  <Icon>
+                    <g>
+                      <title>background</title>
+                      <rect
+                        fill="none"
+                        id="canvas_background"
+                        height="17"
+                        width="17"
+                        y="-1"
+                        x="-1"
                       />
-                    );
-                  })}
-                  <NewColumnButton
-                    ref={el => (this.newColumnButtonRef = el)}
-                    onClick={this.handleAddColumn}
-                  >
-                    <Icon>
-                      <g>
-                        <title>background</title>
-                        <rect
-                          fill="none"
-                          id="canvas_background"
-                          height="17"
-                          width="17"
-                          y="-1"
-                          x="-1"
-                        />
-                      </g>
-                      <g>
-                        <title>Layer 1</title>
-                        <path
-                          stroke="null"
-                          id="svg_1"
-                          d="m14.366742,9.060623l-5.306119,0l0,5.306119c0,0.172293 -0.139832,0.312125 -0.312125,0.312125l-2.496997,0c-0.172293,0 -0.312125,-0.139832 -0.312125,-0.312125l0,-5.306119l-5.306119,0c-0.172293,0 -0.312125,-0.139832 -0.312125,-0.312125l0,-2.496997c0,-0.172293 0.139832,-0.312125 0.312125,-0.312125l5.306119,0l0,-5.306119c0,-0.172293 0.139832,-0.312125 0.312125,-0.312125l2.496997,0c0.172293,0 0.312125,0.139832 0.312125,0.312125l0,5.306119l5.306119,0c0.172293,0 0.312125,0.139832 0.312125,0.312125l0,2.496997c0,0.172293 -0.139832,0.312125 -0.312125,0.312125z"
-                        />
-                      </g>
-                    </Icon>
-                    Add New Column
-                  </NewColumnButton>
-                  {provided.placeholder}
-                </Container>
-              )}
-            </Droppable>
-          </div>
+                    </g>
+                    <g>
+                      <title>Layer 1</title>
+                      <path
+                        stroke="null"
+                        id="svg_1"
+                        d="m14.366742,9.060623l-5.306119,0l0,5.306119c0,0.172293 -0.139832,0.312125 -0.312125,0.312125l-2.496997,0c-0.172293,0 -0.312125,-0.139832 -0.312125,-0.312125l0,-5.306119l-5.306119,0c-0.172293,0 -0.312125,-0.139832 -0.312125,-0.312125l0,-2.496997c0,-0.172293 0.139832,-0.312125 0.312125,-0.312125l5.306119,0l0,-5.306119c0,-0.172293 0.139832,-0.312125 0.312125,-0.312125l2.496997,0c0.172293,0 0.312125,0.139832 0.312125,0.312125l0,5.306119l5.306119,0c0.172293,0 0.312125,0.139832 0.312125,0.312125l0,2.496997c0,0.172293 -0.139832,0.312125 -0.312125,0.312125z"
+                      />
+                    </g>
+                  </Icon>
+                  Add New Column
+                </NewColumnButton>
+                {provided.placeholder}
+              </Container>
+            )}
+          </Droppable>
+          {/* </div> */}
         </DragDropContext>
+        <footer>
+          <a href="https://github.com/tmelliottjr/Not-Quite-Trello">
+            <i className="fab fa-github" />
+          </a>
+          <a href="https://tomelliott.io">Tom Elliott</a>
+        </footer>
       </>
     );
   }
