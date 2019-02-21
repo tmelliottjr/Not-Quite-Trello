@@ -11,7 +11,7 @@ import { DeleteColumnButton } from './DeleteColumnButton';
 
 const Container = styled.div`
   flex-direction: column;
-  flex: 0 0 255px;
+  flex: 0 0 256px;
   margin: 10px;
   border-radius: 2px;
   background-color: #353d42ad;
