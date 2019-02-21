@@ -7,7 +7,7 @@ import NewTask from './NewTask';
 import TaskItem from './TaskItem';
 import ColumnTitle from './ColumnTitle';
 import { saveTask, deleteTask, createTask, deleteColumn } from '../actions';
-import { DeleteButton } from './DeleteButton';
+import { DeleteColumnButton } from './DeleteColumnButton';
 
 const Container = styled.div`
   flex-direction: column;
@@ -66,7 +66,7 @@ class Column extends Component {
             ref={provided.innerRef}
           >
             <ColumnHeader>
-              <DeleteButton onClick={this.handleColumnDelete} />
+              <DeleteColumnButton onClick={this.handleColumnDelete} />
             </ColumnHeader>
             <ColumnTitle
               column={this.props.column}

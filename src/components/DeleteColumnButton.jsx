@@ -31,7 +31,7 @@ const Button = styled.button`
   }
 `;
 
-export const DeleteButton = props => {
+export const DeleteColumnButton = props => {
   return (
     <Button {...props}>
       <i className="far fa-trash-alt" />

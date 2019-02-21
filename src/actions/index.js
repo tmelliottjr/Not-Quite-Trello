@@ -9,43 +9,43 @@ export const ADD_COLUMN = 'ADD_COLUMN';
 export const MOVE_COLUMN = 'MOVE_COLUMN';
 export const DELETE_COLUMN = 'DELETE_COLUMN';
 
-export function createTask(columnId, taskContent) {
+export const createTask = (columnId, taskContent) => {
   return {
     type: CREATE_TASK,
     taskId: generateUID(),
     taskContent,
     columnId,
   };
-}
+};
 
-export function deleteTask(taskId, columnId) {
+export const deleteTask = (taskId, columnId) => {
   return {
     type: DELETE_TASK,
     taskId,
     columnId,
   };
-}
+};
 
-export function moveTask(result) {
+export const moveTask = result => {
   return { type: MOVE_TASK, result };
-}
+};
 
-export function saveTask(task) {
+export const saveTask = task => {
   return { type: SAVE_TASK, task };
-}
+};
 
-export function editColumn(columnId, columnTitle) {
+export const editColumn = (columnId, columnTitle) => {
   return { type: EDIT_COLUMN, columnId, columnTitle };
-}
+};
 
-export function addColumn() {
+export const addColumn = () => {
   return { type: ADD_COLUMN, columnId: generateUID() };
-}
+};
 
-export function moveColumn(result) {
+export const moveColumn = result => {
   return { type: MOVE_COLUMN, result };
-}
+};
 
-export function deleteColumn(columnId) {
+export const deleteColumn = columnId => {
   return { type: DELETE_COLUMN, columnId };
-}
+};

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
 import TaskEdit from './TaskEdit';
-import AddNewButton from './AddNewButton';
+import AddNewButton from './NewTaskButton';
 
 const Container = styled.div`
   width: 100%;
@@ -11,7 +11,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export default class NewTask extends Component {
   constructor(props) {
     super(props);
