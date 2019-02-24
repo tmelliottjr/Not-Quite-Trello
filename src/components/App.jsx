@@ -4,7 +4,6 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { moveTask, addColumn, moveColumn } from '../actions';
-import bg from '../serenity.jpeg';
 import Column from './Column';
 import Footer from './Footer';
 import NewColumnButton from './NewColumnButton';
@@ -20,7 +19,7 @@ html {
 
 body {
   height: 100%;
-  background: url(${bg});
+  background: url('http://res.cloudinary.com/duz6ncq1v/image/upload/q_auto/v1551044466/serenity.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
