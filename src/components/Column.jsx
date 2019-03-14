@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import NewTask from './NewTask';
 import TaskItem from './TaskItem';
@@ -103,5 +104,14 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { saveTask, deleteTask, createTask, deleteColumn },
+  { saveTask, deleteTask, createTask, deleteColumn }
 )(Column);
+
+Column.propTypes = {
+  columns: PropTypes.object,
+  addedColumn: PropTypes.string,
+  saveTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  createTask: PropTypes.func.isRequired,
+  deleteColumn: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import editButton from '../edit.svg';
@@ -86,4 +87,9 @@ export default class TaskItem extends Component {
       </>
     );
   }
+}
+
+TaskItem.propTypes = {
+  task: PropTypes.object,
+  column: PropTypes.object
 }

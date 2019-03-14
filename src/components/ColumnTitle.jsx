@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { editColumn, deleteColumn } from '../actions';
 
 const Title = styled.h3`
@@ -135,3 +136,10 @@ export default connect(
   mapStateToProps,
   { editColumn, deleteColumn },
 )(ColumnTitle);
+
+ColumnTitle.propTypes = {
+  column: PropTypes.object.isRequired,
+  addedColumn: PropTypes.string,
+  editColumn: PropTypes.func.isRequired,
+  deleteColumn: PropTypes.func.isRequired,
+}

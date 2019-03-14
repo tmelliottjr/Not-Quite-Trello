@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Backdrop = styled.div`
@@ -63,3 +64,8 @@ export default class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  show: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+};

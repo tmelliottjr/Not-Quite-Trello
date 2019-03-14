@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from './Modal';
 import TaskEdit from './TaskEdit';
@@ -37,4 +38,8 @@ export default class NewTask extends Component {
       </Container>
     );
   }
+}
+
+NewTask.propTypes = {
+  column: PropTypes.object,
 }

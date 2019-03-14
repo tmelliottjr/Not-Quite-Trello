@@ -13,13 +13,13 @@ if (localData === undefined) {
   localData = {
     columns: {},
     tasks: {},
-    columnOrder: [],
+    columnOrder: []
   };
 }
 
 const store = configureStore({
   reducer: combinedReducer,
-  preloadedState: localData,
+  preloadedState: localData
 });
 
 store.subscribe(() => {
@@ -30,5 +30,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

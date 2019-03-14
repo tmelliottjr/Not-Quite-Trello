@@ -6,7 +6,7 @@ import {
   EDIT_COLUMN,
   ADD_COLUMN,
   MOVE_COLUMN,
-  DELETE_COLUMN,
+  DELETE_COLUMN
 } from '../actions';
 
 const saveTask = (prevTasks, action) => {
@@ -15,8 +15,8 @@ const saveTask = (prevTasks, action) => {
     ...prevTasks,
     [id]: {
       ...prevTasks[id],
-      content,
-    },
+      content
+    }
   };
   return newTasks;
 };
@@ -28,8 +28,8 @@ const createTask = (prevTasks, action) => {
     ...prevTasks,
     [taskId]: {
       id: taskId,
-      content: taskContent,
-    },
+      content: taskContent
+    }
   };
 
   return newTasks;
@@ -44,8 +44,8 @@ const addTaskToColumn = (prevColumns, action) => {
     ...prevColumns,
     [columnId]: {
       ...prevColumns[columnId],
-      taskIds: newTaskIds,
-    },
+      taskIds: newTaskIds
+    }
   };
 
   return newColumns;
@@ -55,7 +55,7 @@ const deleteTask = (prevTasks, action) => {
   const { taskId } = action;
   let newTasks = { ...prevTasks };
 
-  delete prevTasks[taskId];
+  delete newTasks[taskId];
 
   return newTasks;
 };
@@ -63,14 +63,14 @@ const deleteTask = (prevTasks, action) => {
 const removeTaskFromColumn = (prevColumns, action) => {
   const { taskId, columnId } = action;
   let newColumn = { ...prevColumns[columnId] };
-  let newTaskIds = newColumn.taskIds;
+  let newTaskIds = [...newColumn.taskIds];
 
   newTaskIds.splice(newTaskIds.indexOf(taskId), 1);
   newColumn.taskIds = newTaskIds;
 
   let newColumns = {
     ...prevColumns,
-    [columnId]: newColumn,
+    [columnId]: newColumn
   };
 
   return newColumns;
@@ -93,7 +93,7 @@ const moveTask = (prevColumns, action) => {
 
     const newColumns = {
       ...prevColumns,
-      [column.id]: column,
+      [column.id]: column
     };
 
     return newColumns;
@@ -109,13 +109,13 @@ const moveTask = (prevColumns, action) => {
   destinationTaskIds.splice(destination.index, 0, draggableId);
   const newDestinationColumn = {
     ...destinationColumn,
-    taskIds: destinationTaskIds,
+    taskIds: destinationTaskIds
   };
 
   const newColumns = {
     ...prevColumns,
     [newSourceColumn.id]: newSourceColumn,
-    [newDestinationColumn.id]: newDestinationColumn,
+    [newDestinationColumn.id]: newDestinationColumn
   };
 
   return newColumns;
@@ -130,8 +130,8 @@ const addColumn = (prevColumns, action) => {
       id: columnId,
       title: '',
       taskIds: [],
-      new: true,
-    },
+      new: true
+    }
   };
 
   return newColumns;
@@ -195,8 +195,8 @@ const editColumn = (prevColumns, action) => {
     [columnId]: {
       ...prevColumns[columnId],
       title: columnTitle,
-      new: false,
-    },
+      new: false
+    }
   };
 
   return newColumns;
@@ -207,36 +207,36 @@ export const combinedReducer = (state, action) => {
     case SAVE_TASK:
       return {
         ...state,
-        tasks: saveTask(state.tasks, action),
+        tasks: saveTask(state.tasks, action)
       };
     case CREATE_TASK:
       return {
         ...state,
         tasks: createTask(state.tasks, action),
-        columns: addTaskToColumn(state.columns, action),
+        columns: addTaskToColumn(state.columns, action)
       };
     case MOVE_TASK:
       return {
         ...state,
-        columns: moveTask(state.columns, action),
+        columns: moveTask(state.columns, action)
       };
     case DELETE_TASK:
       return {
         ...state,
         tasks: deleteTask(state.tasks, action),
-        columns: removeTaskFromColumn(state.columns, action),
+        columns: removeTaskFromColumn(state.columns, action)
       };
     case ADD_COLUMN:
       return {
         ...state,
         columns: addColumn(state.columns, action),
         columnOrder: addColumnToColumnOrder(state.columnOrder, action),
-        addedColumn: action.columnId,
+        addedColumn: action.columnId
       };
     case MOVE_COLUMN:
       return {
         ...state,
-        columnOrder: moveColumn(state.columnOrder, action),
+        columnOrder: moveColumn(state.columnOrder, action)
       };
     case DELETE_COLUMN:
       return {
@@ -244,13 +244,13 @@ export const combinedReducer = (state, action) => {
         tasks: deleteAssociatedTasks(state.tasks, action, state.columns),
         columns: deleteColumn(state.columns, action),
         columnOrder: removeColumnFromColumnOrder(state.columnOrder, action),
-        addedColumn: null,
+        addedColumn: null
       };
     case EDIT_COLUMN:
       return {
         ...state,
         columns: editColumn(state.columns, action),
-        addedColumn: null,
+        addedColumn: null
       };
     default:
       return state;

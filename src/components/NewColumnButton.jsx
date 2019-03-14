@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addColumn } from '../actions';
@@ -95,3 +96,10 @@ export default connect(
   mapStateToProps,
   { addColumn },
 )(NewColumnButton);
+
+
+NewColumnButton.propTypes = {
+  addColumn: PropTypes.func,
+  setNewColumnButtonRef: PropTypes.func,
+  addedColumn: PropTypes.string
+}

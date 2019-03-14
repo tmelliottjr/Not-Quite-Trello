@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import anime from 'animejs';
@@ -159,3 +160,12 @@ export default connect(
   mapStateToProps,
   { saveTask, deleteTask, createTask },
 )(TaskEdit);
+
+TaskEdit.propTypes = {
+  saveTask: PropTypes.func,
+  deleteTask: PropTypes.func,
+  createTask: PropTypes.func,
+  task: PropTypes.object,
+  column: PropTypes.object,
+  handleClose: PropTypes.func
+}

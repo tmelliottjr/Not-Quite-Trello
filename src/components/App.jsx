@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -88,10 +89,7 @@ class App extends React.Component {
     }
 
     // If the source and destination are the same, don't do anything
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
 
@@ -107,18 +105,12 @@ class App extends React.Component {
       <>
         <GlobalStyle />
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable
-            droppableId="all-columns"
-            direction="horizontal"
-            type="column"
-          >
+          <Droppable droppableId="all-columns" direction="horizontal" type="column">
             {provided => (
               <Container ref={provided.innerRef} {...provided.droppableProps}>
                 {this.props.columnOrder.map((columnId, index) => {
                   const column = this.props.columns[columnId];
-                  const tasks = column.taskIds.map(
-                    taskId => this.props.tasks[taskId],
-                  );
+                  const tasks = column.taskIds.map(taskId => this.props.tasks[taskId]);
 
                   return (
                     <Column
@@ -130,9 +122,7 @@ class App extends React.Component {
                     />
                   );
                 })}
-                <NewColumnButton
-                  setNewColumnButtonRef={this.setNewColumnButtonRef}
-                />
+                <NewColumnButton setNewColumnButtonRef={this.setNewColumnButtonRef} />
 
                 {provided.placeholder}
               </Container>
@@ -151,5 +141,14 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { moveTask, addColumn, moveColumn },
+  { moveTask, addColumn, moveColumn }
 )(App);
+
+App.propTypes = {
+  moveTask: PropTypes.func,
+  addColumn: PropTypes.func,
+  moveColumn: PropTypes.func,
+  columns: PropTypes.object,
+  tasks: PropTypes.object,
+  columnOrder: PropTypes.array
+};

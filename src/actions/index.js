@@ -14,7 +14,7 @@ export const createTask = (columnId, taskContent) => {
     type: CREATE_TASK,
     taskId: generateUID(),
     taskContent,
-    columnId,
+    columnId
   };
 };
 
@@ -22,7 +22,7 @@ export const deleteTask = (taskId, columnId) => {
   return {
     type: DELETE_TASK,
     taskId,
-    columnId,
+    columnId
   };
 };
 
