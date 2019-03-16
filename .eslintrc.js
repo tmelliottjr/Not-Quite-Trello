@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['react-app','eslint:recommended', 'plugin:react/recommended'],
   settings: {
     react: {
       version: 'detect',

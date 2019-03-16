@@ -122,9 +122,8 @@ class App extends React.Component {
                     />
                   );
                 })}
-                <NewColumnButton setNewColumnButtonRef={this.setNewColumnButtonRef} />
-
                 {provided.placeholder}
+                <NewColumnButton setNewColumnButtonRef={this.setNewColumnButtonRef} />
               </Container>
             )}
           </Droppable>
