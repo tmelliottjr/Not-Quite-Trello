@@ -20,7 +20,7 @@ html {
 
 body {
   height: 100%;
-  background: url('http://res.cloudinary.com/duz6ncq1v/image/upload/q_auto/v1551044466/serenity.jpg');
+  background: url('https://res.cloudinary.com/duz6ncq1v/image/upload/q_auto/v1551044466/serenity.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
